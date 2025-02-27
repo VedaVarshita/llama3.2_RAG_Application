@@ -1,0 +1,119 @@
+2025-02-26 18:59:15,494 - INFO - Loading faiss.
+2025-02-26 18:59:15,534 - INFO - Successfully loaded faiss.
+2025-02-26 18:59:15,773 - INFO - Loading environment variables...
+2025-02-26 18:59:15,773 - INFO - Environment variables loaded successfully.
+2025-02-26 18:59:15,773 - INFO - Starting to load documents from the directory...
+2025-02-26 18:59:15,773 - INFO - Scanning directory for PDF files: rag-data
+2025-02-26 18:59:15,773 - INFO - Found 19 PDF file(s).
+2025-02-26 18:59:15,773 - INFO - Processing PDF: rag-data/ML/MulticlassAdaBoost.pdf
+2025-02-26 18:59:15,987 - INFO - Successfully loaded 12 document(s) from: rag-data/ML/MulticlassAdaBoost.pdf
+2025-02-26 18:59:15,987 - INFO - Processing PDF: rag-data/ML/XGBoost.pdf
+2025-02-26 18:59:16,125 - INFO - Successfully loaded 13 document(s) from: rag-data/ML/XGBoost.pdf
+2025-02-26 18:59:16,125 - INFO - Processing PDF: rag-data/ML/EfficientBackProp.pdf
+2025-02-26 18:59:16,500 - INFO - Successfully loaded 44 document(s) from: rag-data/ML/EfficientBackProp.pdf
+2025-02-26 18:59:16,500 - INFO - Processing PDF: rag-data/ML/StyleGAN.pdf
+2025-02-26 18:59:16,583 - INFO - Successfully loaded 12 document(s) from: rag-data/ML/StyleGAN.pdf
+2025-02-26 18:59:16,583 - INFO - Processing PDF: rag-data/ML/minka-pca.pdf
+2025-02-26 18:59:16,641 - INFO - Successfully loaded 16 document(s) from: rag-data/ML/minka-pca.pdf
+2025-02-26 18:59:16,641 - INFO - Processing PDF: rag-data/ML/StochasticGradientBoosting.pdf
+2025-02-26 18:59:16,695 - INFO - Successfully loaded 10 document(s) from: rag-data/ML/StochasticGradientBoosting.pdf
+2025-02-26 18:59:16,695 - INFO - Processing PDF: rag-data/ML/backprop_old.pdf
+2025-02-26 18:59:16,696 - INFO - Successfully loaded 4 document(s) from: rag-data/ML/backprop_old.pdf
+2025-02-26 18:59:16,696 - INFO - Processing PDF: rag-data/ML/LDA.pdf
+2025-02-26 18:59:16,834 - INFO - Successfully loaded 30 document(s) from: rag-data/ML/LDA.pdf
+2025-02-26 18:59:16,834 - INFO - Processing PDF: rag-data/ML/BERT.pdf
+2025-02-26 18:59:16,927 - INFO - Successfully loaded 16 document(s) from: rag-data/ML/BERT.pdf
+2025-02-26 18:59:16,927 - INFO - Processing PDF: rag-data/ML/LayerNormalization.pdf
+2025-02-26 18:59:17,021 - INFO - Successfully loaded 14 document(s) from: rag-data/ML/LayerNormalization.pdf
+2025-02-26 18:59:17,022 - INFO - Processing PDF: rag-data/ML/TransferVisualModels.pdf
+2025-02-26 18:59:17,553 - INFO - Successfully loaded 48 document(s) from: rag-data/ML/TransferVisualModels.pdf
+2025-02-26 18:59:17,553 - INFO - Processing PDF: rag-data/ML/Nofreelunch.pdf
+2025-02-26 18:59:17,695 - INFO - Successfully loaded 16 document(s) from: rag-data/ML/Nofreelunch.pdf
+2025-02-26 18:59:17,695 - INFO - Processing PDF: rag-data/ML/Efficientestimationofwordrep.pdf
+2025-02-26 18:59:17,743 - INFO - Successfully loaded 12 document(s) from: rag-data/ML/Efficientestimationofwordrep.pdf
+2025-02-26 18:59:17,743 - INFO - Processing PDF: rag-data/ML/OptimalityofNaiveBayes.pdf
+2025-02-26 18:59:17,780 - INFO - Successfully loaded 6 document(s) from: rag-data/ML/OptimalityofNaiveBayes.pdf
+2025-02-26 18:59:17,780 - INFO - Processing PDF: rag-data/RL/A_General_Language_Assistant_as_a_Laboratory_for_Alignment_v3.pdf
+2025-02-26 18:59:18,061 - INFO - Successfully loaded 48 document(s) from: rag-data/RL/A_General_Language_Assistant_as_a_Laboratory_for_Alignment_v3.pdf
+2025-02-26 18:59:18,061 - INFO - Processing PDF: rag-data/RL/NeurIPS-2020-learning-to-summarize-with-human-feedback-Paper.pdf
+2025-02-26 18:59:18,142 - INFO - Successfully loaded 14 document(s) from: rag-data/RL/NeurIPS-2020-learning-to-summarize-with-human-feedback-Paper.pdf
+2025-02-26 18:59:18,142 - INFO - Processing PDF: rag-data/RL/Deep_Reinforcement_Learning_from_Human_Preferencesv4.pdf
+2025-02-26 18:59:18,213 - INFO - Successfully loaded 17 document(s) from: rag-data/RL/Deep_Reinforcement_Learning_from_Human_Preferencesv4.pdf
+2025-02-26 18:59:18,213 - INFO - Processing PDF: rag-data/RL/Training language models to follow instructions with human feedback.pdf
+2025-02-26 18:59:18,461 - INFO - Successfully loaded 68 document(s) from: rag-data/RL/Training language models to follow instructions with human feedback.pdf
+2025-02-26 18:59:18,461 - INFO - Processing PDF: rag-data/RL/Proximal_Policy_Optimization_Algorithms.pdf
+2025-02-26 18:59:18,625 - INFO - Successfully loaded 12 document(s) from: rag-data/RL/Proximal_Policy_Optimization_Algorithms.pdf
+2025-02-26 18:59:18,625 - INFO - Completed processing. Total documents loaded: 412.
+2025-02-26 18:59:18,625 - INFO - Successfully loaded 412 documents.
+2025-02-26 18:59:18,625 - INFO - Splitting documents into smaller chunks...
+2025-02-26 18:59:18,676 - INFO - Split documents into 1715 chunks.
+2025-02-26 18:59:18,676 - INFO - Creating the vector store...
+2025-02-26 18:59:33,849 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:00:30,206 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:00:30,490 - INFO - Vector store created successfully.
+2025-02-26 19:00:30,490 - INFO - Initializing the RAG chain...
+2025-02-26 19:00:30,518 - INFO - RAG chain initialized successfully.
+2025-02-26 19:00:46,561 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:01:03,413 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-26 19:01:04,907 - INFO - Processed user question successfully.
+2025-02-26 19:04:09,260 - INFO - Loading faiss.
+2025-02-26 19:04:09,287 - INFO - Successfully loaded faiss.
+2025-02-26 19:04:09,481 - INFO - Loading environment variables...
+2025-02-26 19:04:09,481 - INFO - Environment variables loaded successfully.
+2025-02-26 19:04:09,481 - INFO - Starting to load documents from the directory...
+2025-02-26 19:04:09,481 - INFO - Scanning directory for PDF files: rag-data
+2025-02-26 19:04:09,482 - INFO - Found 19 PDF file(s).
+2025-02-26 19:04:09,482 - INFO - Processing PDF: rag-data/ML/MulticlassAdaBoost.pdf
+2025-02-26 19:04:09,663 - INFO - Successfully loaded 12 document(s) from: rag-data/ML/MulticlassAdaBoost.pdf
+2025-02-26 19:04:09,663 - INFO - Processing PDF: rag-data/ML/XGBoost.pdf
+2025-02-26 19:04:09,800 - INFO - Successfully loaded 13 document(s) from: rag-data/ML/XGBoost.pdf
+2025-02-26 19:04:09,800 - INFO - Processing PDF: rag-data/ML/EfficientBackProp.pdf
+2025-02-26 19:04:10,168 - INFO - Successfully loaded 44 document(s) from: rag-data/ML/EfficientBackProp.pdf
+2025-02-26 19:04:10,169 - INFO - Processing PDF: rag-data/ML/StyleGAN.pdf
+2025-02-26 19:04:10,254 - INFO - Successfully loaded 12 document(s) from: rag-data/ML/StyleGAN.pdf
+2025-02-26 19:04:10,254 - INFO - Processing PDF: rag-data/ML/minka-pca.pdf
+2025-02-26 19:04:10,313 - INFO - Successfully loaded 16 document(s) from: rag-data/ML/minka-pca.pdf
+2025-02-26 19:04:10,313 - INFO - Processing PDF: rag-data/ML/StochasticGradientBoosting.pdf
+2025-02-26 19:04:10,369 - INFO - Successfully loaded 10 document(s) from: rag-data/ML/StochasticGradientBoosting.pdf
+2025-02-26 19:04:10,369 - INFO - Processing PDF: rag-data/ML/backprop_old.pdf
+2025-02-26 19:04:10,370 - INFO - Successfully loaded 4 document(s) from: rag-data/ML/backprop_old.pdf
+2025-02-26 19:04:10,370 - INFO - Processing PDF: rag-data/ML/LDA.pdf
+2025-02-26 19:04:10,507 - INFO - Successfully loaded 30 document(s) from: rag-data/ML/LDA.pdf
+2025-02-26 19:04:10,507 - INFO - Processing PDF: rag-data/ML/BERT.pdf
+2025-02-26 19:04:10,600 - INFO - Successfully loaded 16 document(s) from: rag-data/ML/BERT.pdf
+2025-02-26 19:04:10,600 - INFO - Processing PDF: rag-data/ML/LayerNormalization.pdf
+2025-02-26 19:04:10,688 - INFO - Successfully loaded 14 document(s) from: rag-data/ML/LayerNormalization.pdf
+2025-02-26 19:04:10,688 - INFO - Processing PDF: rag-data/ML/TransferVisualModels.pdf
+2025-02-26 19:04:11,224 - INFO - Successfully loaded 48 document(s) from: rag-data/ML/TransferVisualModels.pdf
+2025-02-26 19:04:11,224 - INFO - Processing PDF: rag-data/ML/Nofreelunch.pdf
+2025-02-26 19:04:11,368 - INFO - Successfully loaded 16 document(s) from: rag-data/ML/Nofreelunch.pdf
+2025-02-26 19:04:11,368 - INFO - Processing PDF: rag-data/ML/Efficientestimationofwordrep.pdf
+2025-02-26 19:04:11,416 - INFO - Successfully loaded 12 document(s) from: rag-data/ML/Efficientestimationofwordrep.pdf
+2025-02-26 19:04:11,417 - INFO - Processing PDF: rag-data/ML/OptimalityofNaiveBayes.pdf
+2025-02-26 19:04:11,454 - INFO - Successfully loaded 6 document(s) from: rag-data/ML/OptimalityofNaiveBayes.pdf
+2025-02-26 19:04:11,454 - INFO - Processing PDF: rag-data/RL/A_General_Language_Assistant_as_a_Laboratory_for_Alignment_v3.pdf
+2025-02-26 19:04:11,737 - INFO - Successfully loaded 48 document(s) from: rag-data/RL/A_General_Language_Assistant_as_a_Laboratory_for_Alignment_v3.pdf
+2025-02-26 19:04:11,737 - INFO - Processing PDF: rag-data/RL/NeurIPS-2020-learning-to-summarize-with-human-feedback-Paper.pdf
+2025-02-26 19:04:11,818 - INFO - Successfully loaded 14 document(s) from: rag-data/RL/NeurIPS-2020-learning-to-summarize-with-human-feedback-Paper.pdf
+2025-02-26 19:04:11,818 - INFO - Processing PDF: rag-data/RL/Deep_Reinforcement_Learning_from_Human_Preferencesv4.pdf
+2025-02-26 19:04:11,890 - INFO - Successfully loaded 17 document(s) from: rag-data/RL/Deep_Reinforcement_Learning_from_Human_Preferencesv4.pdf
+2025-02-26 19:04:11,890 - INFO - Processing PDF: rag-data/RL/Training language models to follow instructions with human feedback.pdf
+2025-02-26 19:04:12,140 - INFO - Successfully loaded 68 document(s) from: rag-data/RL/Training language models to follow instructions with human feedback.pdf
+2025-02-26 19:04:12,140 - INFO - Processing PDF: rag-data/RL/Proximal_Policy_Optimization_Algorithms.pdf
+2025-02-26 19:04:12,305 - INFO - Successfully loaded 12 document(s) from: rag-data/RL/Proximal_Policy_Optimization_Algorithms.pdf
+2025-02-26 19:04:12,305 - INFO - Completed processing. Total documents loaded: 412.
+2025-02-26 19:04:12,305 - INFO - Successfully loaded 412 documents.
+2025-02-26 19:04:12,305 - INFO - Splitting documents into smaller chunks...
+2025-02-26 19:04:12,356 - INFO - Split documents into 1715 chunks.
+2025-02-26 19:04:12,356 - INFO - Creating the vector store...
+2025-02-26 19:04:12,619 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:05:08,593 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:05:08,864 - INFO - Vector store created successfully.
+2025-02-26 19:05:08,865 - INFO - Initializing the RAG chain...
+2025-02-26 19:05:08,886 - INFO - RAG chain initialized successfully.
+2025-02-26 19:05:33,035 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:05:35,251 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-26 19:05:36,068 - INFO - Processed user question successfully.
+2025-02-26 19:05:53,279 - INFO - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-02-26 19:05:54,652 - INFO - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+2025-02-26 19:05:55,735 - INFO - Processed user question successfully.

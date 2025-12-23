@@ -1,246 +1,204 @@
-# LLaMA 3.2 RAG Application
+# LLaMA 3.2 RAG Research Assistant
 
-An intelligent research assistant built with LangChain and LLaMA 3.2, designed for semantic search and question-answering across document collections. This RAG (Retrieval-Augmented Generation) system enables efficient exploration of research papers and documents with high accuracy and low latency.
+A sophisticated retrieval-augmented generation (RAG) research assistant for semantic search and question answering over academic document collections. The system combines dense vector retrieval, local LLM inference, multiple reasoning workflows, and an interactive web interface to support efficient and transparent research workflows.
+
+---
+
+## 🔎 Overview
+
+This project implements a production-grade RAG system that integrates:
+
+* **Dense vector retrieval** using FAISS for semantic search
+* **Local LLM inference** with LLaMA 3.2 via Ollama
+* **Three operational modes**: Standard RAG, LangGraph workflow, and DSPy-optimized RAG
+* **Interactive web interface** built with Gradio
+
+The system is designed for researchers and practitioners who need to rapidly explore, query, and understand large collections of academic papers while maintaining full control over data and models.
+
+---
 
 ## 🌟 Features
 
-- **Semantic Search**: Advanced vector-based document retrieval using FAISS and OllamaEmbeddings
-- **High Performance**: 86% Mean Reciprocal Rank with 5-6 chunks/second processing speed
-- **Optimized Retrieval**: Multi-Model Ranking (MMR) based system improving result relevance by 27%
-- **Low Latency**: 56% reduction in search latency through optimized vector operations
-- **Scalable Architecture**: Supports parallel query processing and handles 30+ documents efficiently
-- **Interactive Chat Interface**: Command-line interface for real-time document querying
+### Core Capabilities
 
-## 🏗️ Architecture
+* **Semantic Search**: Captures query intent beyond keyword matching
+* **Multi-Document Support**: Index and query entire research paper collections
+* **Three RAG Modes**:
 
-The application follows a modular architecture with the following components:
+  * **Standard RAG**: Direct retrieval and generation pipeline
+  * **LangGraph**: Workflow-based RAG with document grading and conditional routing
+  * **DSPy**: Optimized prompting and structured generation for improved quality
+* **Interactive Web UI**: Gradio-based interface with real-time streaming responses
+* **Source Attribution**: Automatic citation of retrieved documents
+* **Performance Analytics**: Query statistics, latency tracking, and mode-level comparisons
+* **Example Queries**: Predefined questions for rapid exploration
+
+### Technical Highlights
+
+* Maximal Marginal Relevance (MMR) for diverse and relevant retrieval
+* Configurable chunk size and overlap for optimal indexing
+* FAISS-based vector indexing for fast similarity search
+* Streaming responses for improved UX
+* Session-level statistics and performance tracking
+
+---
+
+## 🏗️ System Architecture
 
 ```
-├── main.py              # Entry point and orchestration
-├── document_loader.py   # PDF document loading with PyMuPDF
-├── text_splitter.py     # Document chunking with RecursiveCharacterTextSplitter
-├── vector_store.py      # FAISS vector store creation and management
-├── retriever.py         # MMR-based retrieval configuration
-├── chat_model.py        # RAG chain construction with LLaMA 3.2
-├── logger_config.py     # Centralized logging configuration
-├── config.py           # Environment configuration
-└── rag-data/           # Directory for PDF documents
+┌─────────────────────────────────────────────────────────────┐
+│                     Document Processing                     │
+├─────────────────────────────────────────────────────────────┤
+│  PDF Loading → Text Splitting → Embedding → Vector Storage  │
+│  (PyMuPDF)     (Recursive)      (Nomic)     (FAISS)         │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    Query Processing                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ┌─────────────┐  ┌──────────────┐  ┌─────────────┐         │
+│  │ Standard    │  │  LangGraph   │  │    DSPy     │         │
+│  │    RAG      │  │   Workflow   │  │ Optimized   │         │
+│  └─────────────┘  └──────────────┘  └─────────────┘         │
+│         ↓                 ↓                  ↓              │
+│         └─────────────────┴──────────────────┘              │
+│                           ↓                                 │
+│              MMR Retrieval (k=3, fetch_k=100)               │
+│                           ↓                                 │
+│              LLaMA 3.2 Generation (Ollama)                  │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│                      Gradio Web UI                          │
+│  Chat Interface | Mode Selection | Statistics | Examples    │
+└─────────────────────────────────────────────────────────────┘
 ```
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.8+
-- Ollama server running locally
-- LLaMA 3.2 model installed in Ollama
-- PDF documents to query
+* Python 3.8+
+* Ollama server running locally
+* LLaMA 3.2 model installed in Ollama
+* PDF documents for indexing
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/VedaVarshita/llama3.2_RAG_Application.git
-   cd llama3.2_RAG_Application
-   ```
+```bash
+git clone https://github.com/VedaVarshita/llama3.2_RAG_Application.git
+cd llama3.2_RAG_Application
+pip install -r requirements.txt
+```
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Ollama Setup
 
-3. **Set up Ollama**
-   ```bash
-   # Install Ollama (if not already installed)
-   curl -fsSL https://ollama.ai/install.sh | sh
-   
-   # Pull required models
-   ollama pull llama3.2:1b
-   ollama pull nomic-embed-text
-   ```
+```bash
+ollama pull llama3.2:1b
+ollama pull nomic-embed-text
+ollama serve
+```
 
-4. **Configure environment**
-   Create a `.env` file in the project root:
-   ```env
-   EMBEDDING_MODEL=nomic-embed-text
-   CHAT_MODEL=llama3.2:1b
-   BASE_URL=http://localhost:11434
-   ```
+### Environment Configuration
 
-5. **Prepare your documents**
-   ```bash
-   mkdir rag-data
-   # Place your PDF files in the rag-data directory
-   ```
+Create a `.env` file in the project root:
 
-6. **Create logs directory**
-   ```bash
-   mkdir logs
-   ```
+```env
+EMBEDDING_MODEL=nomic-embed-text
+CHAT_MODEL=llama3.2:1b
+BASE_URL=http://localhost:11434
+CHUNK_SIZE=1024
+CHUNK_OVERLAP=128
+```
 
-### Usage
+### Prepare Documents
 
-1. **Start the application**
-   ```bash
-   python main.py
-   ```
+```bash
+mkdir rag-data
+# Add PDF files to rag-data/
+```
 
-2. **Start querying**
-   ```
-   Hello world!, Type 'exit' to end the conversation.
-   You: What are the main findings in the research papers?
-   Assistant: 
-   ```
+### Run the Application
 
-3. **Exit the application**
-   ```
-   You: exit
-   Byee :)
-   ```
+```bash
+python main.py
+```
+
+The Gradio web interface will launch locally, allowing you to select RAG modes, ask questions, and inspect performance metrics.
+
+---
 
 ## ⚙️ Configuration
 
 ### Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `EMBEDDING_MODEL` | `nomic-embed-text` | Ollama embedding model for vector generation |
-| `CHAT_MODEL` | `llama3.2:1b` | Ollama chat model for response generation |
-| `BASE_URL` | `http://localhost:11434` | Ollama server URL |
+| Variable          | Default                  | Description                       |
+| ----------------- | ------------------------ | --------------------------------- |
+| `EMBEDDING_MODEL` | `nomic-embed-text`       | Ollama embedding model name       |
+| `CHAT_MODEL`      | `llama3.2:1b`            | Ollama chat model name            |
+| `BASE_URL`        | `http://localhost:11434` | Ollama API endpoint               |
+| `CHUNK_SIZE`      | `1024`                   | Document chunk size in characters |
+| `CHUNK_OVERLAP`   | `128`                    | Overlap between chunks            |
 
-### Retrieval Configuration
-
-The system uses MMR (Maximal Marginal Relevance) with the following parameters:
-- **k**: 3 (number of documents to return)
-- **fetch_k**: 100 (number of documents to fetch before MMR filtering)
-- **lambda_mult**: 1 (diversity parameter for MMR)
-
-### Document Processing
-
-- **Chunk Size**: 1024 characters
-- **Chunk Overlap**: 128 characters
-- **Supported Formats**: PDF files
-
-## 📊 Performance Metrics
-
-- **Mean Reciprocal Rank**: 86%
-- **Processing Speed**: 5-6 chunks/second
-- **Latency Reduction**: 56% compared to baseline
-- **Relevance Improvement**: 27% with MMR optimization
-- **Document Capacity**: 30+ documents tested
-
-## 🧩 Key Components
-
-### Vector Store (`vector_store.py`)
-- FAISS indexing with L2 distance metric
-- OllamaEmbeddings integration
-- In-memory document store for fast access
-
-### Retriever (`retriever.py`)
-- MMR-based retrieval for balanced relevance and diversity
-- Configurable search parameters
-- Optimized for academic document retrieval
-
-### RAG Chain (`chat_model.py`)
-- LangChain LCEL (LangChain Expression Language) pipeline
-- Custom prompt template for research assistance
-- Streaming output support
-
-### Document Processing
-- Recursive text splitting for optimal chunk sizes
-- PDF parsing with PyMuPDF
-- Robust error handling and logging
-
-## 🔧 Advanced Usage
-
-### Custom Models
-
-To use different Ollama models:
-
-```bash
-# Pull a different model
-ollama pull llama3.2:3b
-
-# Update .env file
-CHAT_MODEL=llama3.2:3b
-```
-
-### Tuning Parameters
-
-Modify retrieval parameters in `retriever.py`:
-
-```python
-def configure_retriever(vector_store):
-    return vector_store.as_retriever(
-        search_type='mmr',
-        search_kwargs={
-            'k': 5,        # Increase for more context
-            'fetch_k': 50, # Adjust based on document collection size
-            'lambda_mult': 0.7  # Lower for more diversity
-        }
-    )
-```
-
-
-## 📝 Logging
-
-The application provides comprehensive logging:
-- All logs are saved to `logs/application.log`
-- Configurable log levels in `logger_config.py`
-- Detailed error tracking with stack traces
-
-
-## 📚 Dependencies
-
-- **LangChain**: Framework for LLM applications
-- **FAISS**: Vector similarity search
-- **Ollama**: Local LLM inference
-- **PyMuPDF**: PDF document processing
-- **python-dotenv**: Environment variable management
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Ollama Connection Error**
-   ```bash
-   # Ensure Ollama is running
-   ollama serve
-   ```
-
-2. **Model Not Found**
-   ```bash
-   # Pull required models
-   ollama pull llama3.2:1b
-   ollama pull nomic-embed-text
-   ```
-
-3. **Memory Issues with Large Documents**
-   - Reduce `chunk_size` in `text_splitter.py`
-   - Decrease `fetch_k` in `retriever.py`
-
-4. **Slow Performance**
-   - Use smaller models (e.g., `llama3.2:1b` instead of larger variants)
-   - Reduce number of retrieved documents (`k` parameter)
-
-
-## Acknowledgments
-
-- [LangChain](https://langchain.com/) for the RAG framework
-- [Ollama](https://ollama.ai/) for local LLM inference
-- [FAISS](https://github.com/facebookresearch/faiss) for efficient vector search
-- [Meta](https://ai.meta.com/) for the LLaMA models
-
-## 📈 Future Enhancements
-
-- [ ] Web interface with Streamlit/Gradio
-- [ ] Support for multiple document formats
-- [ ] Conversation memory and context preservation
-- [ ] Multi-language support
-- [ ] Integration with cloud vector databases
-- [ ] Real-time document updates
-- [ ] Advanced filtering and search operators
+These parameters control model selection, document preprocessing, and backend connectivity.
 
 ---
 
-**Built with ❤️ using LangChain and LLaMA 3.2**
+## 📊 Performance Metrics
+
+### Overall Results
+
+| Metric              | Standard RAG | LangGraph | DSPy  |
+| ------------------- | ------------ | --------- | ----- |
+| **Quality Score**   | 74%          | 63%       | 76%   |
+| **Average Latency** | 1.79s        | 1.31s     | 1.06s |
+| **Success Rate**    | 88%          | 60%       | 94%   |
+| **MRR**             | 0.82         | 0.71      | 0.86  |
+
+**Key Observations**:
+
+* DSPy achieves the strongest overall performance
+* LangGraph provides lower latency through stricter routing and filtering
+* Standard RAG offers a stable and interpretable baseline
+
+---
+
+## 🧩 Key Components
+
+* **Vector Store**: FAISS index with dense embeddings for fast similarity search
+* **Retriever**: MMR-based retrieval balancing relevance and diversity
+* **RAG Pipelines**:
+
+  * LCEL-based Standard RAG
+  * LangGraph conditional workflows
+  * DSPy-optimized structured generation
+* **UI Layer**: Gradio chat interface with mode selection and analytics
+
+---
+
+## 📚 Dependencies
+
+* **LangChain**: RAG orchestration and LCEL pipelines
+* **LangGraph**: Workflow-based reasoning and routing
+* **DSPy**: Prompt and generation optimization
+* **FAISS**: Vector similarity search
+* **Ollama**: Local LLM inference
+* **PyMuPDF**: PDF document processing
+* **Gradio**: Interactive web interface
+
+---
+
+## 📈 Future Enhancements
+
+* [ ] Advanced document grading strategies
+* [ ] Multi-language document support
+* [ ] Persistent vector stores and caching
+* [ ] Fine-grained citation visualization
+* [ ] Cloud-backed deployment options
+
+---
+
+**Built using LangChain, LangGraph, DSPy, FAISS, and LLaMA 3.2 via Ollama**
